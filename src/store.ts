@@ -12,6 +12,15 @@ const defaultState: ReduxState = {
 
 function reducer(state = defaultState, action: LogsActionTypes) {
   switch(action.type) {
+    case 'ADD-LINE':
+      return  {
+        lines: [
+            ...state.lines,
+            action.payload
+        ]
+      }
+    case 'CLEAR_LINE':
+
     default: 
       return state;
   }
