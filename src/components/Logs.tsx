@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 import './Logs.css';
 
 export interface Line {
-    content: string,
-    type: string
+    content: string
 }
 
 export interface LogsPros {
@@ -28,7 +28,7 @@ export default class Logs extends Component<LogsPros> {
           <input type="button" value="clear" onClick={() => {}} />
         </div>
         <div className="logs-body" ref={this.inputRef}>
-          {this.props.lines && this.props.lines.map(({ content, type }, index) =>
+          {this.props.lines && this.props.lines.map(({ content }, index) =>
             <div key={index} className={type}>{content}</div>
           )}
         </div>
@@ -36,3 +36,5 @@ export default class Logs extends Component<LogsPros> {
     )
   }
 }
+
+const mapDispatchToProps =
