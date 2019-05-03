@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, FormEvent} from 'react';
 import './App.css';
 
 import Logs from './components/Logs';
@@ -15,19 +15,25 @@ export default class App extends Component<{}, AppState> {
     itemsLabel: 'ITEM',
   }
 
-  onChangeSize = (event: FormEvent<HTMLInputElement>) => {
+  onChangeSize  = (event: FormEvent<HTMLInputElement>)=>{
     const currentTarget = event.currentTarget;
-    const value = parseInt(currentTarget.value, 10);
-    if (isNaN(value)) return;
-    this.setState({
-      itemBoxSize: value
-    });
+    const value  = parseInt(currentTarget.value, 10);
+    if(isNaN(value))return;
+    this.setState(
+        {
+          itemBoxSize: value
+        }
+    );
   }
 
-  onChangeLabel = ({ currentTarget }: FormEvent<HTMLInputElement>) => {
-    this.setState({
-      itemsLabel: currentTarget.value
-    });
+  onChangeText  = (event: FormEvent<HTMLInputElement>)=>{
+    const currentTarget = event.currentTarget;
+    const value  = currentTarget.value;
+    this.setState(
+        {
+          itemsLabel: value
+        }
+    );
   }
 
   render() {
@@ -43,6 +49,7 @@ export default class App extends Component<{}, AppState> {
           type="number"
           name="itemBoxSize"
           id="itemBoxSize"
+          onChange={this.onChangeSize}
           value={this.state.itemBoxSize}
           />
         <label htmlFor="itemsLabel">Label:</label>
@@ -50,6 +57,7 @@ export default class App extends Component<{}, AppState> {
           type="text"
           name="itemsLabel"
           id="itemsLabel"
+          onChange={this.onChangeText}
           value={this.state.itemsLabel}
           />
         <ItemBox size={this.state.itemBoxSize} itemsLabel={this.state.itemsLabel} />
