@@ -1,24 +1,24 @@
-import  { createStore } from 'redux';
+import { createStore } from 'redux';
 
 export interface ReduxState {
-    lines: string[];
+  lines: string[];
 }
 
-const  defaultState: ReduxState = {
-    lines: []
+const defaultState: ReduxState = {
+  lines: []
 }
 
-function reducer(state:ReduxState,action: any) {
-    switch(action.type)
-    {
-        default:
-            return state;
-    }
+function reducer(state = defaultState, action: any) {
+  switch(action.type) {
+    default: 
+      return state;
+  }
 }
 
 const store = createStore(
-    reducer,
-    //@ts-ignore
-
+  reducer,
+  // @ts-ignore
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
+export default store;
